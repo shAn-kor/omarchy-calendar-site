@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+client_secret*.json
+credentials*.json
+credentials.enc
+token_cache.json
+.encryption_key
+calendar-events.json
+*.log
+*.local.md
+.DS_Store

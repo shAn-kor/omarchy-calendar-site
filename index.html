@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Omarchy Calendar는 Google Calendar 일정을 Omarchy 데스크톱에서 읽기 전용으로 확인하는 안성훈의 개인용 연동입니다.">
+  <meta name="color-scheme" content="light">
+  <title>Omarchy Calendar — 개인용 캘린더 연동</title>
+  <style>
+    :root { --paper:#f7f6f2; --ink:#24332b; --muted:#526258; --line:#cbd2ca; --link:#205a43; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif; font-size:17px; line-height:1.85; word-break:keep-all; overflow-wrap:anywhere; }
+    .wrap { width:min(100% - 40px, 850px); margin-inline:auto; }
+    .skip { position:absolute; left:16px; top:-100px; background:var(--paper); padding:10px; }
+    .skip:focus { top:12px; }
+    a { color:var(--link); text-underline-offset:.22em; }
+    a:focus-visible { outline:3px solid var(--link); outline-offset:4px; }
+    header { padding-block:25px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+    .owner { color:var(--muted); font-size:.9rem; }
+    nav { display:flex; gap:22px; flex-wrap:wrap; }
+    nav a { display:inline-flex; min-height:44px; align-items:center; }
+    main { padding-block:58px 40px; }
+    .eyebrow { color:var(--muted); font-size:.9rem; letter-spacing:.04em; margin:0 0 14px; }
+    h1 { font-family:"Noto Serif KR",Georgia,serif; font-size:clamp(2.1rem,6vw,3.3rem); line-height:1.2; letter-spacing:-.035em; margin:0 0 24px; }
+    .lead { max-width:35em; font-size:1.2rem; line-height:1.75; margin:0 0 20px; }
+    section { margin-top:42px; max-width:72ch; }
+    h2 { font-size:1.3rem; line-height:1.5; margin:0 0 14px; }
+    p { margin:0 0 15px; }
+    ul { margin:0; padding-left:1.35em; }
+    li { padding-left:.2em; margin-bottom:9px; }
+    code { font-family:ui-monospace,"Cascadia Code",monospace; font-size:.84em; }
+    .policy { margin-top:34px; padding-block:20px; border-block:1px solid var(--line); }
+    footer { padding-block:24px 40px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media (max-width:540px) { body { font-size:16px; } main { padding-top:36px; } .wrap { width:calc(100% - 32px); } nav { gap:16px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <div class="wrap">
+    <header>
+      <span class="owner">안성훈의 개인용 데스크톱 연동</span>
+      <nav aria-label="주 메뉴">
+        <a href="index.html" aria-current="page">앱 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </nav>
+    </header>
+    <main id="main">
+      <p class="eyebrow">GOOGLE CALENDAR · 읽기 전용</p>
+      <h1>Omarchy Calendar</h1>
+      <p class="lead">Google Calendar 일정을 Omarchy 데스크톱의 캘린더 위젯에서 확인하는 개인용 연동입니다.</p>
+      <p>안성훈이 자신의 일정 확인을 위해 설정·운영합니다. <code>tmn73.calendar</code> 플러그인과 Google Workspace CLI(<code>gws</code>)를 사용하며, Google 또는 Omarchy의 공식 서비스가 아닙니다.</p>
+
+      <section aria-labelledby="features">
+        <h2 id="features">어떤 기능을 제공하나요?</h2>
+        <ul>
+          <li>계정에서 접근할 수 있는 캘린더의 일정 제목, 시간, 설명과 장소를 읽어 표시합니다.</li>
+          <li>일정의 회의 링크, 참여 응답과 알림 정보를 위젯에서 확인합니다.</li>
+          <li>동기화를 설정하면 사용자 컴퓨터에서 5분마다 일정 데이터를 새로 읽습니다.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="permission">
+        <h2 id="permission">왜 Google 접근 권한이 필요한가요?</h2>
+        <p>비공개 일정을 표시하려면 Google 계정에서 캘린더 읽기 권한을 허용해야 합니다. 이 설정은 <code>calendar.readonly</code>와 계정 식별을 위한 기본 로그인 권한을 요청합니다.</p>
+        <p>이 읽기 전용 설정은 Google Calendar 일정을 만들거나 수정·삭제하지 않습니다. Gmail, Google Drive 파일, 연락처에 대한 접근 권한도 요청하지 않습니다.</p>
+        <p>인증은 Google 로그인 화면에서 진행합니다. 이 안내 사이트는 Google 비밀번호, 인증 코드, 캘린더 데이터 또는 OAuth 토큰을 입력받지 않습니다.</p>
+      </section>
+
+      <section aria-labelledby="local">
+        <h2 id="local">일정은 어디에 저장되나요?</h2>
+        <p>동기화한 일정은 위젯 표시를 위해 사용자 컴퓨터의 로컬 JSON 파일에 저장합니다. 이 개인용 설정에는 운영자가 제공하는 캘린더 수집 서버가 없습니다.</p>
+        <p>사용자가 회의·지도·일정 링크를 열면 해당 외부 서비스에 연결됩니다. 자세한 데이터 처리와 삭제 방법은 개인정보처리방침에서 확인할 수 있습니다.</p>
+        <p class="policy"><a href="privacy.html">Omarchy Calendar 개인정보처리방침 읽기</a></p>
+      </section>
+
+      <section aria-labelledby="contact">
+        <h2 id="contact">운영 및 문의</h2>
+        <p>운영자: 안성훈<br>문의: <a href="mailto:kjn0406@gmail.com">kjn0406@gmail.com</a></p>
+        <p>이 페이지는 개인용 Google Calendar 연동의 기능과 데이터 처리를 안내합니다. 웹에서 캘린더를 공개하거나 다른 사람의 계정을 대신 연결하는 서비스가 아닙니다.</p>
+      </section>
+    </main>
+    <footer>Omarchy Calendar · <a href="privacy.html">개인정보처리방침</a></footer>
+  </div>
+</body>
+</html>
